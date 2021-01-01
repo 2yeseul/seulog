@@ -1,5 +1,5 @@
 module.exports = {
-  title: `Seulog`,
+  title: `Seulog💘`,
   description: `무한삽질`,
   author: `2yeseul`,
   introduction: `무한삽질기록`,
@@ -14,7 +14,7 @@ module.exports = {
   icon: `content/assets/felog.png`, // Add your favicon
   keywords: [`blog`],
   comment: {
-    disqusShortName: '', // Your disqus-short-name. check disqus.com.
+    disqusShortName: '2yseul', // Your disqus-short-name. check disqus.com.
     utterances: '2yeseul/seulog', // Your repository for archive comment
   },
   configs: {
