@@ -26,4 +26,6 @@ draft: false
 ```  
 - `$1{}` `2${}` ... 와 같이 지정하면, 넘버링한 순서대로 블록지정을 불러올 수 있다.
 
+![gif1](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FcORhUV%2FbtqSELQNu1z%2FZzEKHVtyGidZtCXtCv0C6K%2Fimg.gif)
+
 출처 - https://velog.io/@humblego42/VSCode%EC%97%90%EC%84%9C-Snippet-%ED%99%9C%EC%9A%A9%ED%95%98%EA%B8%B0
