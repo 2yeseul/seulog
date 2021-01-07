@@ -9,7 +9,7 @@ draft: false
 
 인터페이스는 클래스와 비슷한 `레퍼런스 타입`인데, `abstract class` 보다 추상화 정도가 높기 때문에 abstract class와 달리, 몸통을 갖춘 일반 메서드와 멤버변수를 가질 수 없다. 
 
-따라서 기능을 명시적으로 선언하는 역할로서 `abstract 메서드`와 `상수(static final)`, `default 메서드` `static 메소드`(Java 8부터), `private 메소드`만으로 이루어져 있다. 구현된 코드가 없으므로 당연히 인터페이스를 통해 인스턴스를 생성할 수 없다.
+따라서 기능을 명시적으로 선언하는 역할로서 `abstract 메서드`와 `상수(static final)`, `default 메서드` `static 메소드`, `private 메소드`만으로 이루어져 있다. 구현된 코드가 없으므로 당연히 인터페이스를 통해 인스턴스를 생성할 수 없다.
 
 ## 정의
 
