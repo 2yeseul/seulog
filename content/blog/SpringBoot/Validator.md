@@ -1,7 +1,7 @@
 ---
 title: 'Validator, @InitBinder'
 date: 2021-01-01 00:00:00
-category: ''
+category: 'SpringBoot'
 draft: false
 ---  
 
