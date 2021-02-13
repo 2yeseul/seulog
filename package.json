@@ -18,7 +18,7 @@
     "gatsby-plugin-react-helmet": "^3.0.10",
     "gatsby-plugin-sass": "^2.0.11",
     "gatsby-plugin-sharp": "^2.0.30",
-    "gatsby-plugin-sitemap": "^2.0.10",
+    "gatsby-plugin-sitemap": "^2.12.0",
     "gatsby-plugin-typography": "^2.2.10",
     "gatsby-remark-autolink-headers": "^2.0.16",
     "gatsby-remark-copy-linked-files": "^2.0.11",
@@ -83,7 +83,7 @@
     "format": "prettier --trailing-comma es5 --no-semi --single-quote --write 'src/**/*.js' 'src/**/*.md'",
     "develop": "gatsby develop",
     "start": "npm run develop",
-    "build": "gatsby build",
+    "build": "gatsby build && cp content/pages/google48040feaea3ec819.html public/",
     "lh": "lighthousebot",
     "fix-semi": "eslint --quiet --ignore-pattern node_modules --ignore-pattern public --parser babel-eslint --no-eslintrc --rule '{\"semi\": [2, \"never\"], \"no-extra-semi\": [2]}' --fix gatsby-node.js"
   }
