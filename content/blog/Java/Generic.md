@@ -97,15 +97,15 @@ List<? extends Foo> 와 같은 형태로 사용되는데, 특정 클래스의 �
 
 `Upper Bounded WildCard` 에 대해 공부하고 나니, `Bounded Type`과 뭐가 다른거지? 라는 의문이 들었다. 
 
-예를들어, List<T extends String> 의 경우, 이 List는 오직 T의 요소만을 포함할 수 있다.
+예를들어, `List<T extends String>` 의 경우, 이 List는 오직 T의 요소만을 포함할 수 있다.
 
-하지만 List<? extends String> 의 경우, List는 String을 상속하는 어떤 요소도 사용할 수 있는 것이다. 
+하지만 `List<? extends String>` 의 경우, List는 String을 상속하는 어떤 요소도 사용할 수 있는 것이다. 
 
 즉, 전자의 경우 T가 확정적으로 매칭되는 것이지만, ?는 허용되는 범위 내에서 `와일드카드` 로 자유롭게 사용할 수 있다. 
 
 ### Lower Bounded WildCard
 
-`List<? super Foo> 와 같은 형태로 사용되는데, Upper Bounded WildCard와는 반대로, 특정 클래스의 부모 클래스 만을 인자로 받겠다는 선언이다. 
+`List<? super Foo>` 와 같은 형태로 사용되는데, Upper Bounded WildCard와는 반대로, 특정 클래스의 부모 클래스 만을 인자로 받겠다는 선언이다. 
 
 ## Erasure
 
