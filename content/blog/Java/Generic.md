@@ -73,7 +73,7 @@ public class Tteok extends Material {
 ```
 
 ``` java
-public class doCookTteokboki<T extends Material> {
+public class cookTteokboki<T extends Material> {
     private T material; 
     // ...
 }
