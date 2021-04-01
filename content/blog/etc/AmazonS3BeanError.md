@@ -1,6 +1,6 @@
 ---
 title: '테스트 시 Error creating bean with name amazonS3'
-date: 2021-01-01 00:00:00
+date: 2021-04-01 00:00:00
 category: 'etc'
 draft: false
 --- 
