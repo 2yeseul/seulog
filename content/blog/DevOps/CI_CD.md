@@ -5,97 +5,49 @@ category: 'DevOps'
 draft: false
 ---  
 
-# Github action을 통한 Spring boot 자동 deploy
+# CI / CD 
+현재의 배포 트렌드는 작은 기능 단위로 자주 코드를 통합 및 배포하는 `CI(Continuous Integration)` / `CD(Continuous Deployment)` 가 대세이다. 새로 개발한 기능, 버그를 수정한 것을 real 서비스에 통합하기 위해서는 
 
-```yml
-# This workflow will build a package using Gradle and then publish it to GitHub packages when a release is created
-# For more information see: https://github.com/actions/setup-java/blob/main/docs/advanced-usage.md#Publishing-using-gradle
+1. 소스코드를 테스트하고
+2. 빌드하고
+3. 컨테이너로 만들어
+4. 통합 저장소에 전달 후
+5. 서비스 무중단 배포 etc
 
-name: Gradle Package
-
-# 1)
-on:
-  release:
-    types: [created]
-
-# 2)
-jobs:
-  build:
-
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      packages: write
-
-    steps:
-    # 3)
-    - uses: actions/checkout@v2
-    - name: Set up JDK 11
-      uses: actions/setup-java@v2
-      with:
-        java-version: '11'
-        distribution: 'adopt'
-        server-id: github # Value of the distributionManagement/repository/id field of the pom.xml
-        settings-path: ${{ github.workspace }} # location for the settings.xml file
-
-    - name: Build with Gradle
-      run: gradle build
-
-    # The USERNAME and TOKEN need to correspond to the credentials environment variables used in
-    # the publishing section of your build.gradle
-    - name: Publish to GitHub Packages
-      run: gradle publish
-      env:
-        USERNAME: ${{ github.actor }}
-        TOKEN: ${{ secrets.GITHUB_TOKEN }}
-```
-
-## 1) on
-### 1-1) 특정 브랜치에 push가 진행되면 실행
-
-``` yml
-on:
-  push:
-    branches:
-    - main
-    - release/*
-```
-
-### 1-2) PR이 실행되면 실행
-
-``` yml
-on:
-    pull_request:
-     branches:
-     - main
-```
-
-### 1-3) 특정 시점에 cron으로 실행
-``` yml
-on:
-  schedule:
-    branches:
-    - cron: "0 0 * * * *"
-```
-
-### 1-4) 수동으로 실행
-``` yml
-on:
-  workflow_dispatch:
-```
-
-## 2) jobs
-job은 같은 runner(workflow)위에서 실행되는 일련의 과정들이다. 기본적으로 여러 job들이 있는 workflow는 병렬로 job을 실행한다. 하지만 필요하다면 job을 순차적으로 실행하도록 설정할 수 있는데, `빌드`와 `테스트`, 순차적인 job 두개로 구성된 workflow가 있다고 가정했을 때, 테스트 job은 빌드 job 상태에 의존한다. 만약에 빌드에 실패하면 테스트 역시 run 되지 않는 것이다. 
+등의 과정이 필요하다.
 
 
-## 3) uses: actions/checkout@v2
-git checkout 실행
+CI, CD를 통해 애플리케이션 개발단계를 자동화하여 애플리케이션을 보다 짧은 주기로 고객에게 제공가능하다.
+
+`CI`는 테스트, 빌드, Dockerizing, 저장소에 전달까지 프로덕션 환경으로 서비스를 배포할 수 있도록 준비하는 프로세스이다. `CD`는 저장소로 전달된 프로덕션 서비스를 실제 사용자들에게 배포하는 프로세스를 의미한다. 
+
+## CI / CD 툴 비교 
+
+### Travis
+
+|장점|단점|
+|------------------|------------------|
+|github과의 연동|Jenkins에 비해 적은 플러그인 종류|
+|yml을 통한 쉬운 설정|유료 서비스를 사용하면 가격이 비쌈|
+|레퍼런스 다양|느린 속도|
+|Travis가 알아서 VM으로 호스팅을 해주기 때문에 직접 서버를 운영할 필요가 없다||
+|모든 job이 독립적||
+
+### Jenkins
+
+|장점|단점|
+|------------------|------------------|
+|무료!|다양한 플러그인 -> 플러그인 지옥..|
+|사용자들이 많아 레퍼런스가 다양|프로젝트 규모가 작은 경우 리소스 낭비 발생|
+|호스팅 직접 해야하므로 관련된 모든 부분 관리 가능|-> 서버 운영 및 관리 비용 발생|
+
+### Github Action 
+내가 사용했을 때는 딱히 단점..이라고 생각할 만 한 것은 없었다. 오히려 repo에서 바로 end-to-end로 실행할 수 있고, 설정도 비교적 간편하며 cron 설정을 통해 스케줄링까지 가능하기 때문에 매우 유용하다고 생각하였다. 개인 프로젝트를 수행하면서 매일 야구 경기 일정이나 순위에 대한 스크래핑이 필요했는데, github action의 크론을 설정하여 매일 특정 시간에 스크래핑 하도록 자동화할 수 있었다. 또한 속도도 비교적 빠른 편이며 marketplace에 다양한 action 스크립트 들이 있기 때문에 특정 기능을 자동화하기에 용이하다! 나 같은 경우엔 marketplace를 통해 얻은 yml 파일을 통해 TIL readme를 자동화 중이다.
 
 
 
-출처
-- https://velog.io/@eomttt/Github-Actions%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-%ED%81%B4%EB%9D%BC%EC%9D%B4%EC%96%B8%ED%8A%B8-CICD-%EA%B5%AC%EC%B6%95-Github-Actions-%EC%82%AC%EC%9A%A9%ED%95%B4%EB%B3%B4%EA%B8%B0
 
-- https://blog.naver.com/jcyber/222357094864
-
-- https://docs.github.com/en/actions/learn-github-actions/introduction-to-github-actions
+출처 
+- https://blog.naver.com/jcyber/222357090097
+- https://hwasurr.io/git-github/github-actions/
+- https://owin2828.github.io/devlog/2020/01/09/cicd-1.html
